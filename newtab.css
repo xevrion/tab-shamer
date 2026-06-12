@@ -1,0 +1,109 @@
+/* tab shamer - because someone has to say it */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #0d0d0f;
+  color: #eee;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* this transition makes the bg shift feel less jarring when tab count changes */
+  transition: background-color 0.6s ease;
+}
+
+.wrapper {
+  text-align: center;
+  padding: 2rem;
+}
+
+.count {
+  font-size: 14rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  transition: color 0.6s ease, transform 0.2s ease;
+  /* number is the design, everything else is just supporting cast */
+}
+
+.message {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #999;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+  transition: color 0.6s ease;
+}
+
+/* --- tier colors, vibes go from "you're fine" to "seek help" --- */
+
+/* 1-5: chill green */
+.tier-chill .count {
+  color: #4ade80;
+}
+
+/* 6-10: slightly concerned yellow-green */
+.tier-concerned .count {
+  color: #a3e635;
+}
+
+/* 11-15: passive aggressive yellow */
+.tier-passive .count {
+  color: #facc15;
+}
+
+/* 16-20: disappointed orange */
+.tier-disappointed .count {
+  color: #fb923c;
+}
+
+/* 21-30: existential dread red-orange */
+.tier-dread .count {
+  color: #f87171;
+}
+
+/* 31-50: fully unhinged red */
+.tier-unhinged .count {
+  color: #ef4444;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 50+: cursed purple, body shifts too because at this point we're all going down together */
+.tier-cursed {
+  background: #1a0d1f;
+}
+
+.tier-cursed .count {
+  color: #c084fc;
+  animation: shake 0.3s ease-in-out infinite;
+  text-shadow: 0 0 20px #c084fc, 0 0 40px #a855f7;
+}
+
+.tier-cursed .message {
+  color: #d8b4fe;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2px, 1px) rotate(-0.5deg); }
+  50% { transform: translate(2px, -1px) rotate(0.5deg); }
+  75% { transform: translate(-1px, -1px) rotate(-0.3deg); }
+}
