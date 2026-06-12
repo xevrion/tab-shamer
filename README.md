@@ -22,6 +22,12 @@ No analytics, no tracking, no "premium" version, no accounts. It counts your tab
 
 7 tiers total. The last one (50+) gets weird. You'll see.
 
+## the descent
+
+| 3 tabs | 17 tabs | 34 tabs | 53 tabs |
+|---|---|---|---|
+| ![3 tabs, chill](screenshots/tier-chill-3tabs.png) | ![17 tabs, disappointed](screenshots/tier-disappointed-17tabs.png) | ![34 tabs, unhinged](screenshots/tier-unhinged-34tabs.png) | ![53 tabs, cursed](screenshots/tier-cursed-53tabs.png) |
+
 ## installing this thing
 
 This isn't on the Chrome Web Store (yet, maybe never, who knows). You'll have to load it manually, which takes about 30 seconds:
