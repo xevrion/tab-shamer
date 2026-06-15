@@ -2,6 +2,8 @@
 
 A new tab page that counts how many tabs you have open and judges you for it, with increasing levels of betrayal.
 
+**[Get it on the Chrome Web Store](https://chromewebstore.google.com/detail/adpdoobopdmagpbfodcbghmhainleipm)**
+
 ## why i built this
 
 I had 52 tabs open across 3 windows. One of them was a Wikipedia article about the history of the fork (the eating utensil, not git). I had no memory of opening it. I had no plan to ever read it.
@@ -30,7 +32,9 @@ No analytics, no tracking, no "premium" version, no accounts. It counts your tab
 
 ## installing this thing
 
-This isn't on the Chrome Web Store (yet, maybe never, who knows). You'll have to load it manually, which takes about 30 seconds:
+Easiest way: grab it from the [Chrome Web Store](https://chromewebstore.google.com/detail/adpdoobopdmagpbfodcbghmhainleipm). Click install, open a new tab, face the consequences.
+
+If you'd rather run it from source (or mess with the code yourself), loading it unpacked takes about 30 seconds:
 
 1. Clone or download this repo somewhere on your machine
 2. Open Chrome and go to `chrome://extensions`
