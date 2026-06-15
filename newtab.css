@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-  background: #0d0d0f;
+  background: #0a0a0c;
   color: #eee;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   display: flex;
@@ -19,12 +19,42 @@ body {
   justify-content: center;
   overflow: hidden;
   /* this transition makes the bg shift feel less jarring when tab count changes */
-  transition: background-color 0.6s ease;
+  transition: background-color 0.8s ease;
 }
 
 .wrapper {
+  position: relative;
   text-align: center;
   padding: 2rem;
+  /* little fade-up on load so it doesn't just SLAM into view */
+  animation: settle 0.5s ease-out;
+}
+
+/* soft glow blob sitting behind the number, tints with the tier color */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, currentColor 0%, transparent 65%);
+  opacity: 0.08;
+  filter: blur(40px);
+  color: #4ade80;
+  pointer-events: none;
+  z-index: -1;
+  transition: color 0.8s ease, opacity 0.8s ease;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 0.5rem;
+  transition: color 0.8s ease;
 }
 
 .count {
@@ -32,7 +62,8 @@ body {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
-  transition: color 0.6s ease, transform 0.2s ease;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.6s ease, transform 0.2s ease, text-shadow 0.6s ease;
   /* number is the design, everything else is just supporting cast */
 }
 
@@ -48,10 +79,24 @@ body {
   transition: color 0.6s ease;
 }
 
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* --- tier colors, vibes go from "you're fine" to "seek help" --- */
 
 /* 1-5: chill green */
 .tier-chill .count {
+  color: #4ade80;
+}
+.tier-chill .glow {
   color: #4ade80;
 }
 
@@ -59,9 +104,15 @@ body {
 .tier-concerned .count {
   color: #a3e635;
 }
+.tier-concerned .glow {
+  color: #a3e635;
+}
 
 /* 11-15: passive aggressive yellow */
 .tier-passive .count {
+  color: #facc15;
+}
+.tier-passive .glow {
   color: #facc15;
 }
 
@@ -69,10 +120,18 @@ body {
 .tier-disappointed .count {
   color: #fb923c;
 }
+.tier-disappointed .glow {
+  color: #fb923c;
+  opacity: 0.1;
+}
 
 /* 21-30: existential dread red-orange */
 .tier-dread .count {
   color: #f87171;
+}
+.tier-dread .glow {
+  color: #f87171;
+  opacity: 0.12;
 }
 
 /* 31-50: fully unhinged red */
@@ -80,16 +139,31 @@ body {
   color: #ef4444;
   animation: pulse 1.5s ease-in-out infinite;
 }
+.tier-unhinged .glow {
+  color: #ef4444;
+  opacity: 0.16;
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
 
 /* 50+: cursed purple, body shifts too because at this point we're all going down together */
 .tier-cursed {
-  background: #1a0d1f;
+  background: #15081a;
+}
+
+.tier-cursed .label {
+  color: #6b4f7a;
 }
 
 .tier-cursed .count {
   color: #c084fc;
   animation: shake 0.3s ease-in-out infinite;
-  text-shadow: 0 0 20px #c084fc, 0 0 40px #a855f7;
+  text-shadow: 0 0 25px #c084fc, 0 0 60px #a855f7;
+}
+
+.tier-cursed .glow {
+  color: #a855f7;
+  opacity: 0.22;
+  animation: pulseGlow 1.2s ease-in-out infinite;
 }
 
 .tier-cursed .message {
@@ -99,6 +173,11 @@ body {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.6; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.08); }
 }
 
 @keyframes shake {
